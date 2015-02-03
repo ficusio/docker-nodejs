@@ -31,9 +31,9 @@ ONBUILD COPY . /tmp/app/
 # Which is surprisingly non-obvious operation.
 #
 ONBUILD RUN bash -c 'shopt -s dotglob \
- && rm -rf /tmp/app/{node_modules,Dockerfile,Makefile} \
- && mv -f /tmp/app/* ./ \
- && rmdir /tmp/app'
+ && rm -rf /tmp/app/{node_modules,Dockerfile,Makefile,.dockerignore} \
+ && cp -pRf /tmp/app/* /app/ \
+ && rm -rf /tmp/app'
 
 
 CMD ["node", "index.js"]
