@@ -1,4 +1,4 @@
-FROM ficusio/nodejs-base:latest
+FROM ficusio/nodejs-base:0.12
 
 WORKDIR /app
 ONBUILD COPY package.json npm-shrinkwrap.json* /app/

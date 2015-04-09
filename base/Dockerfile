@@ -1,6 +1,6 @@
-FROM alpinelinux/base:latest
+FROM alpine:3.1
 
-ENV NODEJS_VERSION 0.11.16
+ENV NODEJS_VERSION 0.12.2
 
 RUN echo "==> Installing dependencies..." \
  && apk update \
