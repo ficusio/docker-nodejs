@@ -13,7 +13,7 @@ ONBUILD COPY package.json npm-shrinkwrap.json* /app/
 #
 ONBUILD RUN deps="make gcc g++ python musl-dev" \
  && apk update \
- && apk add $deps \
+ && apk add bash $deps \
  && npm install --production \
  && apk del $deps \
  && rm -rf /var/cache/apk/* \
