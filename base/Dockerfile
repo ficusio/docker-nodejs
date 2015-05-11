@@ -33,4 +33,7 @@ RUN echo "==> Installing dependencies..." \
  && echo "==> Updating NPM..." \
  && npm i -g npm \
  && rm -rf /var/cache/apk/* \
+ && npm cache clean \
+ && rm -rf ~/.node-gyp /tmp/npm* \
+ && rm -rf /var/cache/apk/* \
  && rm -rf /root/nodejs
