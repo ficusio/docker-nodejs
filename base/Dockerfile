@@ -30,10 +30,9 @@ RUN echo "==> Installing dependencies..." \
     musl-dev openssl-dev zlib-dev \
  && apk add \
     openssl libgcc libstdc++ \
+ && rm -rf /var/cache/apk/* \
  && echo "==> Updating NPM..." \
  && npm i -g npm \
- && rm -rf /var/cache/apk/* \
  && npm cache clean \
  && rm -rf ~/.node-gyp /tmp/npm* \
- && rm -rf /var/cache/apk/* \
  && rm -rf /root/nodejs
