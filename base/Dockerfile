@@ -31,4 +31,5 @@ RUN echo "==> Installing dependencies..." \
  && apk add \
     openssl libgcc libstdc++ \
  && rm -rf /var/cache/apk/* \
- && rm -rf /root/nodejs
+ && rm -rf /root/nodejs \
+ && npm i -g npm
