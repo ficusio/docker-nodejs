@@ -1,39 +1,43 @@
-FROM ficusio/nodejs-base:0.12
+FROM ficusio/nodejs-base:5.6
 
 WORKDIR /app
 ONBUILD COPY package.json npm-shrinkwrap.json* /app/
 
 # Install NPM deps first to allow reusing of Docker image cache when package.json
-# is not changed:
+# has not changed.
 #
-# 1. install development deps that might be needed to compile binary Node.js modules;
-# 2. install NPM-managed application deps, but don't install devDependencies;
-# 3. remove development deps from step 1;
-# 4. clear various NPM caches.
+# 1. Install development deps that might be needed to compile binary Node.js modules.
 #
-ONBUILD RUN deps="make gcc g++ python musl-dev" \
- && apk update \
- && apk add bash $deps \
+# 2. Install NPM-managed application deps, but don't install devDependencies.
+#    Rename node_modules to node_modules_new to prevent overwriting them with
+#    the ones copied from a developer's machine. This can happen if a developer
+#    didn't add node_nodules to a .dockerignore file.
+#
+# 3. Remove development deps from step 1.
+# 4. Clear various NPM caches.
+#
+ONBUILD RUN info(){ printf '\n--\n%s\n--\n\n' "$*"; } \
+ && info '==> Installing build deps...' \
+ && apk add --update --virtual build-deps \
+    make gcc g++ python musl-dev openssl-dev zlib-dev \
+    linux-headers binutils-gold \
+ && info '==> Installing NPM modules...' \
  && npm install --production \
- && apk del $deps \
- && rm -rf /var/cache/apk/* \
+ && mv node_modules node_modules_new \
+ && info '==> Finishing...' \
+ && apk del build-deps \
  && npm cache clean \
- && rm -rf ~/.node-gyp /tmp/npm*
+ && rm -rf ~/.node-gyp /tmp/* \
+ && info '==> Deps installed! =)'
 
-# Copy app files to a temporary dir to prevent just installed /app/node_modules
-# from getting overwritten by the ones copied from developer's machine.
+# Copy app files to the target directory.
 #
-ONBUILD COPY . /tmp/app/
+ONBUILD COPY . /app/
 
-# Move app files from the temporary dir to WORKDIR.
+# Rename node_modules_new back to node_modules.
 #
-# Bash and dotglob are here to move all files, including hidden ones.
-# Which is surprisingly non-obvious operation.
-#
-ONBUILD RUN bash -c 'shopt -s dotglob \
- && rm -rf /tmp/app/{node_modules,Dockerfile,Makefile,.dockerignore} \
- && cp -pRf /tmp/app/* /app/ \
- && rm -rf /tmp/app'
+ONBUILD RUN rm -rf node_modules \
+  && mv node_modules_new node_modules
 
 
 CMD ["node", "index.js"]
