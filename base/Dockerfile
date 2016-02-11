@@ -5,7 +5,7 @@ ENV NODEJS_VERSION=5.6.0 \
     NPM_VERSION=3.7.1
 
 RUN info(){ printf '\n--\n%s\n--\n\n' "$*"; } \
- && info "==> Installing dependencies..." \
+ && info "==> Installing build dependencies..." \
  && apk update \
  && apk add --virtual build-deps \
     curl make gcc g++ python paxctl \
@@ -33,15 +33,15 @@ RUN info(){ printf '\n--\n%s\n--\n\n' "$*"; } \
  && make -j$NPROC \
  && info "==> Installing..." \
  && make install \
- && info "==> Finishing..." \
+ && info "==> Removing build dependencies..." \
  && apk del build-deps \
  && apk add \
     openssl libgcc libstdc++ \
- && rm -rf /var/cache/apk/* \
  && info "==> Updating NPM..." \
  && npm i -g npm@$NPM_VERSION \
  && info "==> Cleaning up..." \
  && npm cache clean \
- && rm -rf ~/.node-gyp /tmp/* \
- && rm -rf /root/nodejs \
+ && rm -rf ~/.node-gyp /tmp/* /usr/share/man /var/cache/apk/* \
+    /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc \
+    /usr/lib/node_modules/npm/html /root/nodejs \
  && echo 'Done! =)'
