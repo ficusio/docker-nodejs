@@ -4,7 +4,7 @@ This repository contains Dockerfiles for [ficusio/node-alpine](https://hub.docke
 
 #### `node-alpine:latest, node-alpine:5.6, node-alpine:5`
 
-This image contains Node.js v5.6.0 and NPM v3.7.1. It is based on [Alpine linux](https://hub.docker.com/r/library/alpine/), which, despite being a very lightweight distribution, provides [`apk` package manager](http://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management), allowing easy installation of many [pre-built packages](https://pkgs.alpinelinux.org/packages).
+This image contains Node.js v4.2 and NPM v3.7. It is based on [Alpine linux](https://hub.docker.com/r/library/alpine/), which, despite being a very lightweight distribution, provides [`apk` package manager](http://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management), allowing easy installation of many [pre-built packages](https://pkgs.alpinelinux.org/packages).
 
 #### `node-alpine:onbuild, node-alpine:5.6-onbuild, node-alpine:5-onbuild`
 
