@@ -1,3 +1,5 @@
+[![](https://badge.imagelayers.io/ficusio/node-alpine:latest.svg)](https://imagelayers.io/?images=ficusio/node-alpine:latest 'Get your own badge on imagelayers.io')
+
 This repository contains Dockerfiles for [ficusio/node-alpine](https://hub.docker.com/r/ficusio/node-alpine/) image, which is ~37MB in virtual size.
 
 #### `node-alpine:latest, node-alpine:5.6, node-alpine:5`
