@@ -1,12 +1,12 @@
 [![](https://badge.imagelayers.io/ficusio/node-alpine:latest.svg)](https://imagelayers.io/?images=ficusio/node-alpine:latest 'Get your own badge on imagelayers.io')
 
-This repository contains Dockerfiles for [ficusio/node-alpine](https://hub.docker.com/r/ficusio/node-alpine/) image, which is ~37MB in virtual size.
+This repository contains Dockerfiles for [ficusio/node-alpine](https://hub.docker.com/r/ficusio/node-alpine/) image, which is ~33MB in virtual size.
 
-#### `node-alpine:latest, node-alpine:5.6, node-alpine:5`
+#### `node-alpine:latest, node-alpine:5.7, node-alpine:5`
 
-This image contains Node.js v5.6.0 and NPM v3.7.1. It is based on [Alpine linux](https://hub.docker.com/r/library/alpine/), which, despite being a very lightweight distribution, provides [`apk` package manager](http://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management), allowing easy installation of many [pre-built packages](https://pkgs.alpinelinux.org/packages).
+This image contains Node.js v5.7 and NPM v3.7. It is based on [Alpine linux](https://hub.docker.com/r/library/alpine/), which, despite being a very lightweight distribution, provides [`apk` package manager](http://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management), allowing easy installation of many [pre-built packages](https://pkgs.alpinelinux.org/packages).
 
-#### `node-alpine:onbuild, node-alpine:5.6-onbuild, node-alpine:5-onbuild`
+#### `node-alpine:onbuild, node-alpine:5.7-onbuild, node-alpine:5-onbuild`
 
 This is an extended version of `node-alpine`, with added `ONBUILD` triggers (similar to and inspired by [google/nodejs-runtime](https://github.com/GoogleCloudPlatform/nodejs-docker/tree/master/runtime) image). These triggers execute on each build of a derived image, and perform two tasks:
 
