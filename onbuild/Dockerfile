@@ -1,4 +1,4 @@
-FROM ficusio/node-alpine:5.6
+FROM ficusio/node-alpine:5.7
 
 WORKDIR /app
 ONBUILD COPY package.json npm-shrinkwrap.json* /app/
