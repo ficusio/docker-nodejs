@@ -1,8 +1,8 @@
 FROM alpine:3.3
 
-ENV NODEJS_VERSION=5.6.0 \
-    NODEJS_SHA256=3af2cc5e5970afc83e59f2065fea2e2df846a544a100cd3c0527f0db05bec27f \
-    NPM_VERSION=3.7.1
+ENV NODEJS_VERSION=5.7.0 \
+    NODEJS_SHA256=2338b46a2f45fbb747089c66931f62555f25a5928511d3a43bbb3a39dcded2d8 \
+    NPM_VERSION=3.7.3
 
 RUN info(){ printf '\n--\n%s\n--\n\n' "$*"; } \
  && info "==> Installing build dependencies..." \
